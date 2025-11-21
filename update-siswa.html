@@ -1,0 +1,26 @@
+<?php
+
+//include koneksi database
+include('koneksi.php');
+
+//get data dari form
+$id_mahasiswa     = $_POST['id_mahasiswa'];
+$nim         = $_POST['nim'];
+$nama_lengkap = $_POST['nama_lengkap'];
+$tempat_lahir = $_POST['tempat_lahir'];
+$tanggal_lahir = $_POST['tanggal_lahir'];
+$alamat       = $_POST['alamat'];
+
+//query update data ke dalam database berdasarkan ID
+$query = "UPDATE tbl_biodata SET nim = '$nim', nama_lengkap = '$nama_lengkap', tempat_lahir = '$tempat_lahir', tanggal_lahir = '$tanggal_lahir', alamat = '$alamat' WHERE id_mahasiswa = '$id_mahasiswa'";
+
+//kondisi pengecekan apakah data berhasil diupdate atau tidak
+if($connection->query($query)) {
+    //redirect ke halaman index.php 
+    header("location: index.php");
+} else {
+    //pesan error gagal update data
+    echo "Data Gagal Diupate!";
+}
+
+?>
